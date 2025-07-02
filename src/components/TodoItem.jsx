@@ -17,6 +17,7 @@ const TodoItem = ({ todo }) => {
     // this function will be called when the delete button is clicked.
     const toggleCompleted = () => {
         toggleComplete(todo.id);
+        todo.completed = !todo.completed
     }
 
   return (
