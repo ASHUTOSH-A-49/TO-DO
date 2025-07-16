@@ -25,12 +25,14 @@ const TodoForm = () => {
                 placeholder='Write todo...'
                 className='w-full md:w-3/4 mx-7 border border-black/10 rounded-lg px-3 outline-none duration-150 bg-white/20 py-1.5'
             />
-            <input
-                type="datetime-local"
-                value={deadline}
-                onChange={(e) => setDeadline(e.target.value)}
-                className='w-full md:w-auto mx-7 border border-black/10 rounded-lg px-3 outline-none duration-150 bg-white/20 py-1.5'
-            />
+            <label htmlFor="deadline" className="text-sm mb-1">Date</label>
+  <input
+    id="deadline"
+    type="datetime-local"
+    value={deadline}
+    onChange={(e) => setDeadline(e.target.value)}
+    className="w-full md:w-auto border border-black/10 rounded-lg px-3 outline-none duration-150 bg-white/20 py-1.5"
+  />
             <button
                 type='submit'
                 className='rounded-lg px-3 py-1 bg-green-600 text-white shrink-0'
