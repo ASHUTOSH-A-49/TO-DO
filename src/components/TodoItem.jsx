@@ -13,9 +13,9 @@ const TodoItem = ({ todo }) => {
     }, [todo.deadline]);
 
     const editTodo = () => {
-        updateTodo(todo.id, { 
-            text: todoText, 
-            deadline: todoDeadline 
+        updateTodo(todo.id, {
+            text: todoText,
+            deadline: todoDeadline
         });
         setIsTodoEditable(false);
     };
@@ -30,14 +30,14 @@ const TodoItem = ({ todo }) => {
     if (isOverdue) bgColor = "bg-[#f8d7da]";
 
     return (
-        <div 
-  className={`flex flex-col border border-black/10 rounded-lg px-3 py-2 gap-y-2 shadow-sm shadow-white/50 duration-300 text-black ${bgColor}`}
-  onClick={() => {
-    if (!isTodoEditable) {
-      toggleComplete(todo.id);
-    }
-  }}
->
+        <div
+            className={`flex flex-col border border-black/10 rounded-lg px-3 py-2 gap-y-2 shadow-sm shadow-white/50 duration-300 text-black ${bgColor}`}
+            onClick={() => {
+                if (!isTodoEditable) {
+                    toggleComplete(todo.id);
+                }
+            }}
+        >
 
             <div className='flex gap-x-3 items-center'>
                 <div className="w-5 h-5 flex items-center justify-center border border-black/10 rounded cursor-pointer"
@@ -49,13 +49,19 @@ const TodoItem = ({ todo }) => {
                 <input
                     type="text"
                     className={`border outline-none w-full bg-transparent rounded-lg 
-                    ${isTodoEditable ? "border-black/10 px-2" : "border-transparent"}
+                    ${isTodoEditable ? "border-black/10 px-2 cursor-text" : "border-transparent cursor-pointer"}
                     ${todo.completed ? "line-through" : ""}`}
                     value={todoText}
                     readOnly={!isTodoEditable}
-                    onClick={(e) => e.stopPropagation()}
+                    onClick={(e) => {
+                        if (!isTodoEditable) {
+                            toggleComplete(todo.id);
+                        }
+                        e.stopPropagation(); // Prevent outer click
+                    }}
                     onChange={(e) => setTodoText(e.target.value)}
                 />
+
 
                 <button
                     className='inline-flex w-8 h-8 rounded-lg text-sm border border-black/10 justify-center items-center 
